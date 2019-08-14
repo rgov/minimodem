@@ -84,6 +84,8 @@ simpleaudio_open_stream(
 	    sa->backend = &simpleaudio_backend_pulseaudio;
 #elif USE_ALSA
 	    sa->backend = &simpleaudio_backend_alsa;
+#elif USE_OPENAL
+	    sa->backend = &simpleaudio_backend_openal;
 #else
 	    fprintf(stderr, "simpleaudio_open_stream: no SA_BACKEND_SYSDEFAULT was configured\n");
 	    goto err_out;
@@ -93,6 +95,12 @@ simpleaudio_open_stream(
 #if USE_ALSA
 	case SA_BACKEND_ALSA:
 	    sa->backend = &simpleaudio_backend_alsa;
+	    break;
+#endif
+
+#if USE_OPENAL
+	case SA_BACKEND_OPENAL:
+	    sa->backend = &simpleaudio_backend_openal;
 	    break;
 #endif
 
